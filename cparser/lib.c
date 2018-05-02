@@ -1,3 +1,6 @@
-int rslex_parse(char *s) {
-    return 0;    
+#include <stdio.h>
+
+int rslex_parse() {
+    printf("shiet");
+    return 0;
 }
