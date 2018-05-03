@@ -1,1 +1,5 @@
 /target
+.vscode
+
+.gdb_history
+*.log

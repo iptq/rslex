@@ -2,10 +2,10 @@
   #include <stdbool.h>
 
   #include "rslex.h"
+  #include "y.tab.h"
 %}
 
-%option stack noyywrap
-%option prefix="rslex_"
+%option reentrant stack bison-bridge noyywrap
 
 %x SECT_RULES
 %x COMMENT
@@ -21,11 +21,13 @@ NAME ([[:alpha:]_][[:alnum:]_]*)
 <INITIAL>{
   /*}*/
   
-  ^"/*" yy_push_state(COMMENT);
+  ^"/*" yy_push_state(COMMENT, yyscanner);
 
   ^"%%" {
     sectnum = 2;
   }
 }
+
+<<EOF>> yyterminate();
 
 %%

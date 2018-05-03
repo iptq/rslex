@@ -6,16 +6,16 @@ CFLAGS := -g -std=c11
 
 all: librslexparser.a
 
-librslexparser.a: lib.o lexer.o parser.o
+librslexparser.a: lexer.o parser.o lib.o
 	$(AR) r -o $@ $^
 
-y.tab.c: rslex.y
-	$(YACC) -d -o $@ $^
+y.tab.c y.tab.h: rslex.y
+	$(YACC) -d -o y.tab.c $^
 
 lex.yy.c: rslex.l
-	$(LEX) -o $@ $^
+	$(LEX) --header-file=lex.yy.h -o $@ $^
 
-lexer.o: lex.yy.c y.tab.c
+lexer.o: lex.yy.c y.tab.h
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 parser.o: y.tab.c

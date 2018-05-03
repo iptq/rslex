@@ -48,9 +48,11 @@ fn main() {
     contents += "\n";
 
     // ok fun part
+    let result: lexer_t;
     if let Ok(src) = CString::new(contents) {
         unsafe {
-            println!("Hello, world! {:?}", rslex_parse_main(src.as_ptr()));
+            result = rslex_parse_main(src.as_ptr());
         }
+        println!("Hello, world! {:?}", result);
     }
 }
