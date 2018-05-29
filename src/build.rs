@@ -1,4 +1,4 @@
 fn main() {
-    println!("cargo:rustc-link-lib=static=rslexparser");
-    println!("cargo:rustc-link-search=native=./cparser");
+    println!("cargo:rustc-link-lib=static=crslex");
+    println!("cargo:rustc-link-search=native=./crslex");
 }
